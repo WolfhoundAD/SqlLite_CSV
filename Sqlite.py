@@ -1,6 +1,5 @@
 import sqlite3
 import csv
-
 # Создание базы данных SQLite и таблицы
 conn = sqlite3.connect('example.db')
 cursor = conn.cursor()
@@ -13,7 +12,6 @@ with open('users.csv', 'w', newline='') as file:
     csv_writer.writerow(['name', 'email'])
     csv_writer.writerow(['Alex Fish', 'Tarantino@example.com'])
     csv_writer.writerow(['Anton Tower', 'UbicaApples@example.com'])
-    # добавьте свои данные или логику генерации данных из других источников
 
 # Заполнение таблицы данными из файла CSV
 with open('users.csv', 'r') as file:
@@ -21,7 +19,7 @@ with open('users.csv', 'r') as file:
     next(csv_data)  # Пропуск заголовка
     for row in csv_data:
         cursor.execute("INSERT INTO users (name, email) VALUES (?, ?)", row)
-
+        
 # Извлечение данных из таблицы и вывод на экран
 cursor.execute("SELECT * FROM users")
 rows = cursor.fetchall()
